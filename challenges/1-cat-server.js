@@ -17,7 +17,7 @@ function checkServerStatus(CBfunc) {
 
 //in this instance our callback function fed to the larger function will be the testCB in the test suite, which allows us to test that what is passed to it (i.e. the asynchronous request output) is correct.
 
-//request itself takes an endpoint and a callback function so that it can go and grab data from a specific place then passes it into a callback function that we write. We use either the error or the data that returns. How do we use it? Well, as mentioned above, by passing to the output to a callback function. Now we can use the error or the data synchronously.
+//request itself takes an endpoint and a callback function so that it can go and grab data from a specific place then passes it into a callback function that we write (if we saw the require function it would take a string and its own CBfunc). We use either the error or the data that returns. How do we use it? Well, as mentioned above, by passing the output to a callback function. Now we can use the error or the data synchronously in the function.
 
 function fetchBannerContent(CBfunc) {
   request('/banner', (err, banner) => {
