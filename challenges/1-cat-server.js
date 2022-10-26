@@ -107,19 +107,24 @@ function fetchAllCats(CBfunc) {
 
 function fetchOwnersWithCats(CBfunc) {
   let objArray = [];
+  let count = 0;
   fetchAllOwners((err, owners) => {
     if (err) {
       CBfunc(err);
     }
-    owners.forEach(owner => {
+    owners.forEach((owner, index) => {
+      //we are keeping track of the index we are on so that they remain in the same order when we push their objects to the new array (due to the randomness of async code)
       fetchCatsByOwner(owner, (err, array) => {
         if (err) {
           CBfunc(err);
         }
-        let obj = {};
-        obj[owner] = array;
-        objArray.push(obj);
-        if (objArray.length === owners.length) {
+        objArray[index] = { owner: owner, cats: array };
+        count++;
+        if (count === owners.length) {
+          //We use a count rather then testing length because async code finishes at random times. So one fetch will finish first and may be the one intended to be added to the array at index 5. This gives us an array of [undefined, undefined, undefined, undefined, undefined, {owner: gary, cats:[larry, jerry]} ]
+          //We dont want to end it here so we have to wait for all async fetches to resolve. so we put a count incrementor at the end of each. We only end when the count reaches the needed number.
+          //The reason we didnt need to do this above is because we wern't adding the async fetches at specified indexed last time, the array would fill from index 0 as each fetch finished. We were able to use the sort feature at the end to order them before putting the intended output array into our CBfunc. This time we werent allowed to use .sort() so we had to add the fetch outcomes to the index of the forEach which left gaps. We needed to use the counter as explained above.
+
           CBfunc(null, objArray);
         }
       });
