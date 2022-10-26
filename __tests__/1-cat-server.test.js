@@ -128,7 +128,7 @@ describe('fetchCatsByOwner()', () => {
   });
 });
 
-describe.only('fetchCatPics()', () => {
+describe('fetchCatPics()', () => {
   test('invokes the callback function with no error', done => {
     function testCB(err) {
       expect(err).toBe(null);
@@ -170,7 +170,7 @@ describe.only('fetchCatPics()', () => {
   });
 });
 
-describe.only('fetchAllCats()', () => {
+describe('fetchAllCats()', () => {
   test('invokes the callback with no error', done => {
     function testCB(err) {
       expect(err).toBe(null);
@@ -196,7 +196,7 @@ describe.only('fetchAllCats()', () => {
   });
 });
 
-describe.only('fetchOwnersWithCats()', () => {
+describe('fetchOwnersWithCats()', () => {
   test('invokes the callback function with no error', done => {
     function testCB(err) {
       expect(err).toBe(null);
@@ -246,7 +246,7 @@ describe('kickLegacyServerUntilItWorks()', () => {
   });
 });
 
-describe('buySingleOutfit()', () => {
+describe.only('buySingleOutfit()', () => {
   test('invokes the callback with no error when given a valid outfit', done => {
     function testCB(err) {
       expect(err).toBe(null);
