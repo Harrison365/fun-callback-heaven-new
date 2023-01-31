@@ -246,7 +246,7 @@ describe('kickLegacyServerUntilItWorks()', () => {
   });
 });
 
-describe.only('buySingleOutfit()', () => {
+describe('buySingleOutfit()', () => {
   test('invokes the callback with no error when given a valid outfit', done => {
     function testCB(err) {
       expect(err).toBe(null);

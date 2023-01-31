@@ -19,6 +19,8 @@ function checkServerStatus(CBfunc) {
 
 //request itself takes an endpoint and a callback function so that it can go and grab data from a specific place then passes it into a callback function that we write (if we saw the require function it would take a string and its own CBfunc). We use either the error or the data that returns. How do we use it? Well, as mentioned above, by passing the output to a callback function. Now we can use the error or the data synchronously in the function.
 
+//We cant return the error or the data because when we try and use it externally e.g. console.log(), the function might exicute after the console.log(). By using the callback, we can pass in a function which console.log()s.
+
 function fetchBannerContent(CBfunc) {
   request('/banner', (err, banner) => {
     if (err) {
@@ -56,7 +58,7 @@ function fetchCatsByOwner(owner, CBfunc) {
 
 function fetchCatPics(arr, CBfunc) {
   if (arr.length === 0) {
-    CBfunc(null, null);
+    CBfunc(null);
   }
   let newArr = [];
   arr.forEach(catString => {
