@@ -76,7 +76,8 @@ function fetchCatPics(arr, CBfunc) {
   });
 }
 
-//^^^ We check that the latest push has made the array long enough. Then we can move on. This is because we can't finish the forEach as this would mean exiting the request callback (err,pic). This would mean that we couldnt use anything from within as it is asynchronous (and so will finish last and be unusable by synchronous code outside of the request callback)
+//Can't do the CBfunc on the outside as it will invoke before the foreach has finished.
+//So we put it inside the request callback function and put an if around it.
 
 function fetchAllCats(CBfunc) {
   const arrayOfCats = [];

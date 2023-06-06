@@ -4,6 +4,8 @@ function returnHello() {
   }, 3000);
 }
 
-console.log(returnHello(), '<<<HERE');
+const response = returnHello();
 
-//wont work as asynchronous code will occur after console.log().
+console.log(response, '<<<HERE');
+
+// //wont work as asynchronous code will occur after console.log().
