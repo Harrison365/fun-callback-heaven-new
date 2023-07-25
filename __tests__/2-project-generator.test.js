@@ -3,7 +3,7 @@ const fs = require('fs');
 const removeProject = require('./utils.js');
 
 //'remove the ".skip" on the describe to run the tests'
-describe.skip('project_generator', () => {
+xdescribe('project_generator', () => {
   beforeEach(done => removeProject('my_new_project', done));
   afterAll(done => removeProject('my_new_project', done));
 
