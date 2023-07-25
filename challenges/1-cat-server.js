@@ -76,8 +76,8 @@ function fetchCatPics(arr, CBfunc) {
   });
 }
 
-//Can't do the CBfunc on the outside as it will invoke before the foreach has finished.
-//So we put it inside the request callback function and put an if around it.
+//Can't do the CBfunc on the outside of the forEach as it will invoke before the forEach has finished.
+//So we put it inside the request callback function and put an if around it. So it only invokes on the final iteration of the forEach.
 
 function fetchAllCats(CBfunc) {
   const arrayOfCats = [];
