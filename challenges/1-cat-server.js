@@ -3,11 +3,12 @@ const request = require('../utils/server');
 
 function checkServerStatus(CBfunc) {
   request('/status', (err, status) => {
-    if (err) {
-      CBfunc(err);
-    } else {
-      CBfunc(null, status);
-    }
+    // if (err) {
+    //   CBfunc(err);
+    // } else {
+    CBfunc(null, status);
+    // }
+    //will work with or without if statement but I think its better practice (going forward) to have it.
   });
 }
 
@@ -69,6 +70,7 @@ function fetchCatPics(arr, CBfunc) {
       } else {
         newArr.push(pic);
       }
+      //cb must be invoked inside the call back to maintain syncriocity, but we only want it to happen on the last go so we put in an if statement. (RANDOM ORDER EXPLAINATION IS MORE FOR FETCH OWNERS WITH CATS (although still sort of works as a random request will finish first and invoke the CBfunc)))
       if (newArr.length === arr.length) {
         CBfunc(null, newArr);
       }
