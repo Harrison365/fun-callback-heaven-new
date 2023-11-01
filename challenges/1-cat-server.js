@@ -1,4 +1,3 @@
-const { catsByOwner } = require('../utils/database');
 const request = require('../utils/server');
 
 function checkServerStatus(CBfunc) {
