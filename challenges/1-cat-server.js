@@ -2,11 +2,11 @@ const request = require('../utils/server');
 
 function checkServerStatus(CBfunc) {
   request('/status', (err, status) => {
-    // if (err) {
-    //   CBfunc(err);
-    // } else {
-    CBfunc(null, status);
-    // }
+    if (err) {
+      CBfunc(err);
+    } else {
+      CBfunc(null, status);
+    }
     //will work with or without if statement but I think its better practice (going forward) to have it.
   });
 }
